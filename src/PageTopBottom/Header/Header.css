@@ -1,0 +1,30 @@
+
+
+:root{
+    --primary-color: #2f2cd8;
+    --secondary-color: #7184ad;
+}
+
+
+#header{
+     display: flex;
+     justify-content: space-between;
+     background-color: #f6f9fc;
+     align-items: center;
+}
+
+
+#header i{
+    font-size: 24px;
+    margin: 0px 15px;
+    cursor: pointer;
+    color: var(--secondary-color);
+}
+
+#header i:nth-child(2){
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    padding: 15px;
+    color: white;
+    font-size: 18px;
+}

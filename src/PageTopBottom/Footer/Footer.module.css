@@ -1,0 +1,29 @@
+:root {
+    --primary-color: #2f2cd8;
+    --secondary-color: #7184ad;
+    --heading-color: #1f2c73;
+}
+
+.footer {
+    background-color: #f6f9fc;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    margin-top: 50px;
+    border-top: .5px solid rgba(128, 128, 128, 0.276);
+}
+
+
+.footerpara {
+    font-size: 14px;
+    color: #7184ad;
+}
+
+.footerIcons i{
+    color: #7184ad;
+    font-size: 17px;
+    margin: 0px 10px;
+    cursor: pointer;
+}

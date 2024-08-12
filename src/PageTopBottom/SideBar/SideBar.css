@@ -1,0 +1,22 @@
+
+:root{
+    --primary-color: #2f2cd8;
+}
+
+#aside-nav {
+    height: 100vh;
+    background-color: var(--primary-color);
+}
+
+#aside-nav img {
+    width: 30px;
+}
+
+#aside-nav i {
+    cursor: pointer;
+    color: white;
+    font-size: 21px;
+}
+#aside-nav i:nth-child(1) {
+    font-size: 25px;
+}

@@ -1,0 +1,60 @@
+
+:root{
+    --primary-color: #2f2cd8;
+    --secondary-color: #7184ad;
+    --heading-color: #1f2c73;
+}
+
+
+#dashboard .main-content{
+   margin-top: 15px;
+}
+#dashboard h1{
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--heading-color);
+}
+
+#dashboard p{
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--secondary-color);
+    margin-top: -5px;
+}
+
+
+/* ------------------- Cards
+--------------*/
+
+.cards{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+
+/* --------------------BalaceTrends-MonthlyExpenses 
+-------------------*/
+
+.BalaceTrends-MonthlyExpenses{
+    display: flex;
+    flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+.BalaceTrends{
+    width: 69%;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
+    padding: 15px;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.MonthlyExpenses{
+    width: 29%;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
+    padding: 15px;
+    background-color: white;
+    border-radius: 6px;
+}
