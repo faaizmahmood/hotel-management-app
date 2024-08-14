@@ -7,3 +7,17 @@
     box-sizing: border-box;
     font-family: "Rubik", sans-serif;
 }
+
+
+ h1{
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--heading-color);
+}
+
+p{
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--secondary-color);
+    margin-top: -5px;
+}

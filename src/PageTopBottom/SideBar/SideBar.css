@@ -17,6 +17,14 @@
     color: white;
     font-size: 21px;
 }
-#aside-nav i:nth-child(1) {
+#aside-nav > i:nth-child(1) {
     font-size: 25px;
+}
+
+.loading-scree{
+    width: 100%;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
