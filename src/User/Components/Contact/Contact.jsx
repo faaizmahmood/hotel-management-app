@@ -1,10 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate } from 'react-router';
-import useStore from '../../../ReduxStore/store';
+import {UserTypeContext} from '../../../ReduxStore/store';
 
 const Contact = () => {
 
-  const {loggedInUserType} = useStore()
+  const { loggedInUserType } = useContext(UserTypeContext)
   const navigate = useNavigate();
 
   React.useEffect(() => {

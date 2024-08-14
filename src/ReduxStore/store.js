@@ -1,10 +1,14 @@
+import React, { createContext, useState } from 'react';
 
+export const UserTypeContext = createContext();
 
-const useStore=()=>{
-    const loggedInUserType = ""
+export const UserTypeProvider = ({ children }) => {
+    const [loggedInUserType, setLoggedInUserType] = useState('');
 
-    return {loggedInUserType}
-}
-
-export default useStore
+    return (
+        <UserTypeContext.Provider value={{ loggedInUserType, setLoggedInUserType }}>
+            {children}
+        </UserTypeContext.Provider>
+    );
+};
 

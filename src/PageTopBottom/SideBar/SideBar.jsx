@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './SideBar.css'
 import Tooltip from "@material-ui/core/Tooltip";
 import { NavLink, useLocation } from 'react-router-dom';
-import useStore from '../../ReduxStore/store';
+import {UserTypeContext} from '../../ReduxStore/store';
 import { BeatLoader } from 'react-spinners';
 
 const SideBar = () => {
 
-  const { loggedInUserType } = useStore()
+  const { loggedInUserType } = useContext(UserTypeContext)
   // const location = useLocation();
   // const [loading, setLoading] = useState(false);
 
