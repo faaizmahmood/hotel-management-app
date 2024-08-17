@@ -58,6 +58,22 @@ const SignUp = () => {
                     ) : null}
                   </div>
                   <div className="form-group">
+                    <input
+                      type="tel"
+                      id="phone"
+                      className="phone-input"
+                      placeholder="Enter Your Phone"
+                      value={formik.values.phone}
+                      name="phone"
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+
+                    />
+                    {formik.touched.email && formik.errors.email ? (
+                      <div className="error-text">{formik.errors.email}</div>
+                    ) : null}
+                  </div>
+                  <div className="form-group">
                     <div className="password-field">
                       <input
                         type={showPassword ? 'text' : 'password'}

@@ -1,21 +1,41 @@
-import React, { useContext } from 'react'
-import { useNavigate } from 'react-router';
-import { UserTypeContext } from '../../../ReduxStore/store';
+import React from 'react'
+import './RoomListingPage.css'
+import useRoomListingPage from './useRoomListingPage';
+import RoomCards from '../../Containers/RoomCards/RoomCards'
 
 export const RoomListingPage = () => {
 
-  const { loggedInUserType } = useContext(UserTypeContext)
-  const navigate = useNavigate();
-
-  React.useEffect(() => {
-      if (loggedInUserType === 'admin') {
-          navigate('/');
-      }
-  }, [loggedInUserType, navigate]);
+  const { roomsData } = useRoomListingPage()
+console.log("hi:", roomsData)
 
   return (
     <>
-        <h1>Room Listing Page</h1>
+      <section className='room-listing-page'>
+        <div className='main-content'>
+          <h1>Rooms</h1>
+          <p>Rooms are here</p>
+        </div>
+
+        <div className='room-cards'>
+          {
+            roomsData.length === 0 ? (
+              <div>
+                <h1>No Rooms Available</h1>
+              </div>
+            ) : (
+              roomsData.map((room, ind) => (
+                <RoomCards
+                 key={ind}
+                  roomNo={room.roomNo}
+                  RoomDescription={room.RoomDescription}
+                  img={room.CoverImageURL}
+
+                 />
+              ))
+            )
+          }
+        </div>
+      </section>
     </>
   )
 }

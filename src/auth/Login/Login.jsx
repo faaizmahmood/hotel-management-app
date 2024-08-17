@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import './Login.css';
 import useLogin from './useLogin';
 import { NavLink } from 'react-router-dom';
+import { BeatLoader } from 'react-spinners';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { formik } = useLogin();
+  const { formik,loading } = useLogin();
 
   const handlePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -78,7 +79,7 @@ const Login = () => {
                       <div className="error-text">{formik.errors.userType}</div>
                     ) : null}
                   </div>
-                  <button type="submit">Sign In</button>
+                  <button type="submit"> {loading ? <BeatLoader/> : "Sign In"}</button>
                 </form>
                 {/* form */}
                 <p className='mt-4'>

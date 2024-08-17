@@ -10,8 +10,11 @@ import Contact from '../User/Components/Contact/Contact';
 import RoomDetailPage from '../User/Components/RoomDetailPage/RoomDetailPage';
 import RoomListingPage from '../User/Components/RoomListingPage/RoomListingPage';
 import UserDashBoard from '../User/Components/UserDashBoard/UserDashBoard';
+import AddRooms from '../Admin/Components/AddRooms/AddRooms';
 import { Route, Routes } from 'react-router';
-
+import Errors from '../Errors/Errors';
+import Login from '../auth/Login/Login';
+import SignUp from '../auth/SignUp/SignUp';
 
 
 const Router = () => {
@@ -29,10 +32,14 @@ const Router = () => {
                             <Route path='/manage-employe' element={<ManageEmploye />} />
                             <Route path='/manage-rooms' element={<ManageRooms />} />
                             <Route path='/manage-booking' element={<ManageBooking />} />
+                            <Route path='/add-rooms' element={<AddRooms />} />
                             <Route path='/contact' element={<Contact />} />
                             <Route path='/room-detail-page' element={<RoomDetailPage />} />
                             <Route path='/room-listing-page' element={<RoomListingPage />} />
                             <Route path='/user-dashBoard' element={<UserDashBoard />} />
+                            <Route path='/auth-sign-in' element={<Login />} />
+                            <Route path='/auth-sign-up' element={<SignUp />} />
+                            <Route path='*' element={<Errors />} />
                         </Routes>
                         <Footer />
                     </div>

@@ -81,7 +81,8 @@ const SideBar = () => {
 
   return (
     <>
-           { loggedInUserType === 'user' ? renderUserSidebar() : renderAdminSidebar()}
+           {/* { loggedInUserType === 'user' ? renderUserSidebar() : renderAdminSidebar()} */}
+            {renderUserSidebar()}
     </>
 
   );

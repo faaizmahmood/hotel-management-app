@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
 
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,15 +9,20 @@
 }
 
 
- h1{
+h1 {
     font-size: 22px;
     font-weight: 500;
     color: var(--heading-color);
 }
 
-p{
+p {
     font-size: 14px;
     font-weight: 400;
     color: var(--secondary-color);
     margin-top: -5px;
+}
+
+
+.App {
+    height: 100vh;
 }

@@ -1,0 +1,68 @@
+
+:root{
+    --primary-color: #2f2cd8;
+    --secondary-color: #7184ad;
+    --heading-color: #1f2c73;
+}
+
+
+.room-card-item{
+    width: 24%;
+    background: #fff;
+    padding:6px;
+    border-radius: 6px;
+    position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
+    cursor: pointer;
+}
+
+.room-card-item img{
+    border-radius: 8px;
+    height: 200px;
+}
+
+.room-card-item h2{
+    font-size: 14px;
+    color: var(--heading-color);
+}
+.room-card-item h3{
+    font-size: 28px;
+    color: var(--heading-color);
+}
+
+.room-card-item h1{
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--heading-color);
+}
+
+
+.room-card-item p span{
+    color: rgba(18, 163, 71);
+}
+
+
+.room-card-item button{
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+/* responsive */
+
+@media (max-width:768px) {
+    .card-item{
+        width: 49%;
+    }
+}
+
+@media (max-width:576px) {
+    .card-item{
+        width: 100%;
+    }
+}

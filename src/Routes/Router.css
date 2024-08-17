@@ -1,5 +1,5 @@
 
-
+/* 
 .main-container{
     overflow-y: scroll;
 
@@ -8,7 +8,9 @@
 .main-container::-webkit-scrollbar{
     width: 3px;
     background-color: rgb(222, 222, 222);
-}
+} */
+
+
 
 .main-conatiner--section{
     width: 95%;

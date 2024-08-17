@@ -1,0 +1,217 @@
+
+
+:root{
+    --primary-color: #2f2cd8;
+    --secondary-color: #7184ad;
+    --heading-color: #1f2c73;
+}
+
+
+#dashboard .main-content{
+   margin-top: 15px;
+}
+#dashboard h1{
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--heading-color);
+}
+
+#dashboard p{
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--secondary-color);
+    margin-top: -5px;
+}
+
+
+/* ------------------- Cards
+--------------*/
+
+.cards{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+
+/* --------------------room-list--and--profile-section
+-------------------*/
+
+.room-list--and--profile-section{
+    display: flex;
+    flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+.room-list{
+    width: 69%;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
+    padding: 15px;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.profile-section{
+    width: 29%;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
+    padding: 15px;
+    background-color: white;
+    border-radius: 6px;
+}
+
+@media (max-width:992px) {
+    .room-list{
+        width: 59%;
+    }
+    
+    .profile-section{
+        width: 39%;
+    }
+}
+
+@media (max-width:768px) {
+    .room-list{
+        width: 100%;
+    }
+    
+    .profile-section{
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+/* --------------------room-list--and--offers-section
+-------------------*/
+
+.contact--and--offers{
+    display: flex;
+    flex-wrap: wrap;
+   justify-content: space-between;
+}
+
+.contact{
+    width: 29%;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
+    padding: 15px;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.offers-section{
+    width: 69%;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
+    padding: 15px;
+    background-color: white;
+    border-radius: 6px;
+}
+
+.offers-section h2{
+    font-size: 16px;
+    color: var(--heading-color);
+}
+
+.offers-section h2 span{
+    font-size: 14px;
+    color: red;
+}
+
+
+/* .offer-item{
+    border: 1px solid var(--primary-color);
+    padding: 5px 5px 0px 5px;
+} */
+
+/* responsive */
+
+
+@media (max-width:992px) {
+    .contact{
+        width: 39%;
+    }
+    
+    .empty-section{
+        width: 59%;
+    }
+}
+
+@media (max-width:768px) {
+    .contact{
+        width: 100%;
+    }
+    
+    .empty-section{
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+
+
+/* ------------------ Rooms 
+-------------*/
+.room-list{
+    max-height: 400px;
+    height: 300px;
+    overflow-y: hidden;
+    position: relative;
+}
+
+.room-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
+    padding: 10px 10px 5px 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+.room-list .room-item h2{
+    font-size: 16px;
+    color: var(--heading-color);
+}
+
+.room-item i{
+    color: var(--secondary-color);
+}
+
+.room-list button{
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    margin-top: 17px;
+    text-align: end;
+
+    position: absolute;
+    bottom: 10px;
+}
+
+
+/* --------------- profile-section
+--------------- */
+
+.profile-section{
+    text-align: center;
+}
+
+.profile-section-img{
+    border-radius: 50%;
+    width: 100px;
+}
+
+.profile-section button{
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    margin-top: 5px;
+}

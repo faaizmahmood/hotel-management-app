@@ -1,0 +1,46 @@
+
+
+:root{
+    --primary-color: #2f2cd8;
+    --secondary-color: #7184ad;
+    --heading-color: #1f2c73;
+}
+
+
+.room-add-page .main-content{
+   margin-top: 15px;
+}
+
+.room-add-page h1{
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--heading-color);
+}
+
+.room-add-page p{
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--secondary-color);
+    margin-top: -5px;
+}
+
+
+/* ------------------- room-cards
+--------------*/
+
+.room-cards{
+    display: flex;
+    /* justify-content: space-between; */
+    gap:15px;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+
+.add-icon i{
+    background-color: var(--primary-color);
+    padding: 8px 15px;
+    color: white;
+    border: 6px;
+    cursor: pointer;
+}
