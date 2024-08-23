@@ -1,7 +1,7 @@
-
 import { useEffect, useState } from "react";
 
-const useManageBookings = () => {
+
+const useNotification = () => {
 
     const [loading, setLoading] = useState(true)
 
@@ -33,7 +33,7 @@ const useManageBookings = () => {
 
     return { loading, bookingsData }
 
-
 }
 
-export default useManageBookings
+
+export default useNotification;

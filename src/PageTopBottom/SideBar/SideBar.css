@@ -6,6 +6,7 @@
 #aside-nav {
     height: 100vh;
     background-color: var(--primary-color);
+    text-align: center;
 }
 
 #aside-nav img {

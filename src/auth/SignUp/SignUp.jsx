@@ -118,10 +118,10 @@ const SignUp = () => {
                 <p className='mt-4'>
                   Don't have an account?{' '}
                   <NavLink
-                    to='/auth-sign-up'
+                    to='/auth-sign-in'
                     style={{ color: 'black', fontWeight: '700', textDecoration: 'none' }}
                   >
-                    Sign Up
+                    Sign In
                   </NavLink>
                 </p>
               </div>

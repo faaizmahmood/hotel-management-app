@@ -1,7 +1,9 @@
+import { useEffect, useState } from "react"
 
-import { useEffect, useState } from "react";
 
-const useManageBookings = () => {
+
+
+const useUserReservations=()=>{
 
     const [loading, setLoading] = useState(true)
 
@@ -33,7 +35,7 @@ const useManageBookings = () => {
 
     return { loading, bookingsData }
 
-
 }
 
-export default useManageBookings
+
+export default useUserReservations

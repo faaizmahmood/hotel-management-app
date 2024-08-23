@@ -1,9 +1,10 @@
 
-
 :root{
     --primary-color: #2f2cd8;
     --secondary-color: #7184ad;
+    --heading-color: #1f2c73;
 }
+
 
 
 #header{
@@ -12,6 +13,7 @@
      background-color: #f6f9fc;
      align-items: center;
 }
+
 
 
 #header i{
@@ -27,4 +29,9 @@
     padding: 15px;
     color: white;
     font-size: 18px;
+}
+
+#header h1{
+    font-size: 24px;
+    color: var(--heading-color);
 }

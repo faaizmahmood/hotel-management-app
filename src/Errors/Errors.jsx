@@ -3,7 +3,9 @@ import React from 'react'
 const Errors = () => {
   return (
     <>
-        <h1>Errors Page</h1>
+        <section id='error' className='text-center'>
+              <img src='./images/400-error-page.png' alt='400 error bad request' className='error-img'/>
+        </section>
     </>
   )
 }

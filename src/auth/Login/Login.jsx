@@ -6,16 +6,39 @@ import { BeatLoader } from 'react-spinners';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const { formik,loading } = useLogin();
+  const { formik, loading, startLoading } = useLogin();
 
   const handlePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+
+  if (startLoading) {
+    if (loading) {
+      return (
+        <>
+          <div className='loading'
+            style={{
+              width: '100%',
+              height: '60vh',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'white',
+              borderRadius: "10px",
+              boxShadow: "0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12)",
+            }}>
+            <BeatLoader />
+          </div>
+        </>
+      )
+    }
+  }
+
   return (
     <>
       <section id="login" className="login">
-        <div className="row">
+        <div className="row p-0">
           <div className="col-6">
             <div className="content">
               <div className="inner-container">
@@ -79,7 +102,7 @@ const Login = () => {
                       <div className="error-text">{formik.errors.userType}</div>
                     ) : null}
                   </div>
-                  <button type="submit"> {loading ? <BeatLoader/> : "Sign In"}</button>
+                  <button type="submit"> {loading ? <BeatLoader /> : "Sign In"}</button>
                 </form>
                 {/* form */}
                 <p className='mt-4'>
@@ -98,7 +121,7 @@ const Login = () => {
             <img
               src="./images/login-signup-img.jpg"
               alt="login-signup-img"
-              className="login-signup-img"
+              className="login-img"
             />
           </div>
         </div>

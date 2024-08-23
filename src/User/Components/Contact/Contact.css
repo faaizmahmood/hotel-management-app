@@ -1,0 +1,55 @@
+:root {
+    --primary-color: #2f2cd8;
+    --secondary-color: #7184ad;
+    --heading-color: #1f2c73;
+}
+
+.contact-form-container {
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+#contact h1{
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--heading-color);
+}
+
+#contact p{
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--secondary-color);
+    margin-top: -5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    outline: none;
+    margin: 10px 0px;
+    border-radius: 6px;
+    box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
+    background-color: #fff
+}
+
+.input-error {
+    border-color: red;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 14px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    margin-top: 17px;
+}

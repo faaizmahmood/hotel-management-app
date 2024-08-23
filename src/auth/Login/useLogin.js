@@ -1,16 +1,31 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
+import { useContext, useEffect, useState } from 'react';
 import { UserTypeContext } from '../../ReduxStore/store';
-import { useContext, useState } from 'react';
 
 const useLogin = () => {
-  const { setLoggedInUserType } = useContext(UserTypeContext)
-
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [startLoading, setStartLoading] = useState(true);
+  const { loggedInUser, setLoggedInUser } = useContext(UserTypeContext);
 
-  const [loading, setLoading] = useState(false)
+  useEffect(() => {
+    console.log("loggedInUser", loggedInUser);
+    if (loggedInUser && loggedInUser.usertype) {
+      if (loggedInUser.usertype === "admin") {
+        navigate('/');
+      } else if (loggedInUser.usertype === "user") {
+        navigate('/user-dashboard');
+      }
+    }
+  }, [loggedInUser, navigate]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      setStartLoading(false);
+    }, 1000);
+  }, []);
 
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -19,9 +34,6 @@ const useLogin = () => {
     password: Yup.string()
       .min(8, 'Password must be at least 8 characters')
       .required('Password is required'),
-    userType: Yup.string()
-      .oneOf(['user', 'admin'], 'Invalid user type')
-      .required('User type is required'),
   });
 
   const initialValues = {
@@ -30,58 +42,57 @@ const useLogin = () => {
     userType: '',
   };
 
-
   const formik = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      const userData = new FormData();
-      userData.append("Email", values.email);
-      userData.append("Password", values.password);
+      const userData = {
+        Email: values.email,
+        Password: values.password,
+      };
 
       try {
-        setLoading(true)
-        console.log(loading)
+        setLoading(true);
         const res = await fetch('http://localhost:4000/api/getusers', {
           method: 'POST',
-          body: userData
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
         });
-
-        const data = await res.json();
-        console.log(data)
 
         if (!res.ok) {
           if (res.status === 401) {
             alert('Invalid credentials');
           } else if (res.status === 404) {
-            alert('User not found....');
+            alert('User not found.');
           } else {
-            alert('An error occurred');
+            alert('An error occurred.');
           }
-          return
+          setLoading(false);
+          return;
         }
 
+        const data = await res.json();
+        setLoading(false);
 
-        // const data = await res.json();
+        localStorage.setItem('currentUser', JSON.stringify(data.user));
+        setLoggedInUser(data.user); // Update context
 
-        console.log(data)
-
-        setLoggedInUserType(data.role);
-        setLoading(false)
-        if (data.role === 'admin') {
+        if (data.user.usertype === 'admin') {
           navigate('/');
-        } else if (data.role === 'user') {
+        } else if (data.user.usertype === 'user') {
           navigate('/user-dashboard');
         }
       } catch (error) {
-        setLoading(false)
+        setLoading(false);
+        console.error("Error:", error);
         alert("Failed to connect to server");
       }
     },
+  });
 
-  })
-
-  return { formik, loading };
+  return { formik, loading, startLoading };
 };
 
 export default useLogin;

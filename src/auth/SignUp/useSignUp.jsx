@@ -1,15 +1,10 @@
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router';
-import { useContext } from 'react';
-import { UserTypeContext } from '../../ReduxStore/store';
-
 
 const useSignUp = () => {
 
   const navigate = useNavigate();
-
-  const { setLoggedInUserType } = useContext(UserTypeContext)
 
 
   const validationSchema = Yup.object({
@@ -20,9 +15,6 @@ const useSignUp = () => {
     password: Yup.string()
       .min(8, 'Password must be at least 8 characters')
       .required('Password is required'),
-    // userType: Yup.string()
-    //   .oneOf(['user', 'admin'], 'Invalid user type')
-    //   .required('User type is required'),
   });
 
   const initialValues = {
@@ -36,20 +28,30 @@ const useSignUp = () => {
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
+      console.log(formik.errors)
 
+      const userData = {
+        Name: values.name,
+        Email: values.email,
+        Contact: values.phone,
+        Password: values.password,
+        Role: "user",
+        userId: `user-${Date.now()}-${Math.floor(Math.random() * 1e6)}`
+      }
 
-      const userData = new FormData()
-
-      userData.append("Name", values.name)
-      userData.append("Email", values.email)
-      userData.append("Contact", values.phone)
-      userData.append("Password", values.password)
-      userData.append(" Role", "user")
       try {
-        const res = await fetch("http://localhost:3000/api/adduser", {
+        const res = await fetch("http://localhost:4000/api/adduser", {
           method: 'POST',
-          body: userData,
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(userData),
         });
+
+        if (res.status === 400) {
+          alert("Email already exists! Try another")
+          return
+        }
 
         if (!res.ok) {
           if (res.status === 500) {
@@ -57,22 +59,18 @@ const useSignUp = () => {
           } else if (res.status === 500) {
             alert("Error occurred while processing your request.")
           }
-
           return
         }
 
+
+
         const data = await res.json();
 
-        console.log(data)
+        formik.resetForm()
 
-        setLoggedInUserType(data.role);
+
         navigate("/auth-sign-in")
 
-        //   if (data.role === 'admin') {
-        //     navigate('/');
-        //   } else if (data.role === 'user') {
-        //     navigate('/user-dashboard');
-        //   }
 
       } catch (error) {
         alert("Failed to connect to server");
@@ -81,16 +79,6 @@ const useSignUp = () => {
 
     }
 
-
-    // const userFound = LoginData.find(
-    //   (obj) =>
-    //     obj.email === values.email
-    // );
-    // if (userFound) {
-    //     alert("E-email Found! Sign In")
-    // } else {
-    //   navigate('/auth-sign-in');
-    // }
   });
 
   return { formik };

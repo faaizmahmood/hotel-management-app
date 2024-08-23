@@ -4,7 +4,8 @@ import useAddRooms from './useAddRooms'
 
 const AddRooms = () => {
 
-    const { formik } = useAddRooms()
+    const { formik} = useAddRooms()
+
 
     return (
         <>
@@ -40,7 +41,7 @@ const AddRooms = () => {
                                         value={formik.values.roomType}
                                         onChange={formik.handleChange}
                                     >
-                                        <option value="" disabled>Select Rooms Type</option>
+                                        <option value="" disabled>Select Room Type</option>
                                         <option value="Standard Room">Standard Room</option>
                                         <option value="Deluxe Room">Deluxe Room</option>
                                         <option value="Suite">Suite</option>
@@ -60,7 +61,7 @@ const AddRooms = () => {
                                         type='text'
                                         name='roomServentName'
                                         id="roomServentName"
-                                        placeholder='Room Servent Name'
+                                        placeholder='Room Servant Name'
                                         value={formik.values.roomServentName}
                                         onChange={formik.handleChange}
                                     />
@@ -75,7 +76,7 @@ const AddRooms = () => {
                                         type='tel'
                                         id="roomServentContact"
                                         name="roomServentContact"
-                                        placeholder='Room Servent Contact'
+                                        placeholder='Room Servant Contact'
                                         value={formik.values.roomServentContact}
                                         onChange={formik.handleChange}
                                     />
@@ -109,7 +110,7 @@ const AddRooms = () => {
                                         value={formik.values.status}
                                         onChange={formik.handleChange}
                                     >
-                                        <option value="" disabled>Select Availablity status</option>
+                                        <option value="" disabled>Select Availability Status</option>
                                         <option value="Available">Available</option>
                                         <option value="Not Available">Not Available</option>
                                     </select>
@@ -124,7 +125,7 @@ const AddRooms = () => {
                                 <div className='form-group'>
                                     <textarea
                                         name='description'
-                                        id="description'"
+                                        id="description"
                                         placeholder='Add Room Description'
                                         rows="5"
                                         value={formik.values.description}
@@ -142,7 +143,6 @@ const AddRooms = () => {
                                     <input
                                         type='file'
                                         name='coverImg'
-                                        value={formik.values.coverImg}
                                         onChange={(event) => formik.setFieldValue("coverImg", event.currentTarget.files[0])}
                                     />
                                 </div>
@@ -154,8 +154,7 @@ const AddRooms = () => {
                                     <input
                                         type='file'
                                         name='image1'
-                                        value={formik.values.image1}
-                                        onChange={formik.handleChange}
+                                        onChange={(event) => formik.setFieldValue("image1", event.currentTarget.files[0])}
                                     />
                                 </div>
                             </div>
@@ -165,28 +164,22 @@ const AddRooms = () => {
                                 <div className='form-group images'>
                                     <input
                                         type='file'
-                                        name='image1'
-                                        value={formik.values.image2}
-                                        onChange={formik.handleChange} />
+                                        name='image2'
+                                        onChange={(event) => formik.setFieldValue("image2", event.currentTarget.files[0])} 
+                                    />
                                 </div>
                             </div>
                         </div>
                         <div className='row'>
                             <div className='col-12'>
                                 <div className='form-group'>
-                                    <button
-                                        type="submit"
-                                    >Add Room</button>
+                                    <button type="submit">Add Room</button>
                                 </div>
                             </div>
                         </div>
                     </form>
-
                 </div>
-
-
             </section>
-
         </>
     )
 }

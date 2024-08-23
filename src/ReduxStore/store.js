@@ -1,14 +1,20 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 export const UserTypeContext = createContext();
 
 export const UserTypeProvider = ({ children }) => {
-    const [loggedInUserType, setLoggedInUserType] = useState('');
+    const [loggedInUser, setLoggedInUser] = useState(null);
+
+    useEffect(() => {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser) {
+            setLoggedInUser(currentUser);
+        }
+    }, []);
 
     return (
-        <UserTypeContext.Provider value={{ loggedInUserType, setLoggedInUserType }}>
+        <UserTypeContext.Provider value={{ loggedInUser, setLoggedInUser }}>
             {children}
         </UserTypeContext.Provider>
     );
 };
-

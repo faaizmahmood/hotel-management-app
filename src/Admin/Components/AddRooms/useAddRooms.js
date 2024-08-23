@@ -1,78 +1,100 @@
-import { useFormik } from "formik"
-import * as Yup from 'yup'
+import { useFormik } from "formik";
+import * as Yup from 'yup';
 
 const useAddRooms = () => {
 
+    const validationSchema = Yup.object({
+        roomNo: Yup.string().required('Room No is required'),
+        roomType: Yup.string().oneOf(['Standard Room', 'Deluxe Room', 'Suite', 'Family Room', 'Executive Room'], 'Invalid Room Type').required('Room Type is required'),
+        roomServentName: Yup.string().required('Room Servant Name is required'),
+        roomServentContact: Yup.string().required('Room Servant Contact is required'),
+        pricePerDay: Yup.number().required('Price Per Day is required').positive('Price must be a positive number'),
+        status: Yup.string().oneOf(['Available', 'Not Available'], 'Invalid Room Status').required('Room Status is required'),
+        description: Yup.string().required('Room Description is required'),
+        coverImg: Yup.mixed().required('Cover Image is required'),
+        image1: Yup.mixed(),
+        image2: Yup.mixed(),
+    });
 
-    const validationSchema= Yup.object({
-        roomNo: Yup.string().required('Room No is Required'),
-        roomType: Yup.string().oneOf(['Standard Room', 'Deluxe Room', 'Suite', 'Family Room', 'Executive Room'], 'Invalid Room Type').required("Room Type is Required"),
-        roomServentName: Yup.string().required('Room Servent is Required'),
-        roomServentContact: Yup.string().required('Room Servent is Required'),
-        pricePerDay: Yup.string().required('Room Servent Contact is Required'),
-        status: Yup.string().oneOf(['Available', 'Not Available',], 'Invalid Room Status').required("Room Status is Required"),
-        description: Yup.string().required('Room Servent Contact is Required'),
-        coverImg: Yup.mixed().required('Cover Image is Required'),
-
-    })
-    const initialValues={
-        roomNo:'',
-        roomType:'',
-        roomServentName:'',
-        roomServentContact:'',
-        pricePerDay:'',
-        status:'',
-        description:'',
-        coverImg: '',
-        image1:"",
-        image2:''
-    }
+    const initialValues = {
+        roomNo: '',
+        roomType: '',
+        roomServentName: '',
+        roomServentContact: '',
+        pricePerDay: '',
+        status: '',
+        description: '',
+        coverImg: null,
+        image1: null,
+        image2: null,
+    };
 
     const formik = useFormik({
         initialValues,
         validationSchema,
-        onSubmit:async  (values)=>{
+        onSubmit: async (values) => {
+            const formData = new FormData();
+            formData.append('roomNo', values.roomNo);
+            formData.append('roomType', values.roomType);
+            formData.append('roomServantName', values.roomServentName);
+            formData.append('servantContact', values.roomServentContact);
+            formData.append('pricePerDay', values.pricePerDay);
+            formData.append('RoomDescription', values.description);
+            formData.append('AvailabilityStatus', values.status);
+            formData.append('coverImage', values.coverImg);
+            if (values.image1) formData.append('image1', values.image1);
+            if (values.image2) formData.append('image2', values.image2);
 
-        const formData = new FormData();
-        
+            try {
+                // Check if roomNo already exists before submitting the form
+                const response2 = await fetch('http://localhost:4000/api/getrooms');
+                const roomsData = await response2.json();
 
-        formData.append('roomNo', formik.values.roomNo)
-        formData.append('roomType', formik.values.roomType)
-        formData.append('roomServantName', formik.values.roomServentName)
-        formData.append('servantContact', formik.values.roomServentContact)
-        formData.append('pricePerDay', formik.values.pricePerDay)
-        formData.append('RoomDescription', formik.values.description)
-        formData.append('AvailabilityStatus', formik.values.status)
-        formData.append('CoverImageURL', formik.values.coverImg)
-        formData.append('image1URL', formik.values.image1)
-        formData.append('image2URL', formik.values.image2)
+                const isRoom = roomsData.find((item) => item.roomNo === values.roomNo);
 
+                if (isRoom) {
+                    alert("Room No already exists!");
+                    return;
+                }
 
-        try {
-            const response = await fetch('http://localhost:4000/api/addrooms', {
-                method: 'POST',
-                body: formData,
-            });
+                // Submit form data
+                const response = await fetch('http://localhost:4000/api/addrooms', {
+                    method: 'POST',
+                    body: formData,
+                });
 
-            if (!response.ok) {
-                throw new Error('Failed to submit form');
+                if (!response.ok) {
+                    if (response.status === 400) {
+                        alert("Room number already exists.");
+                    }                     else {
+                        throw new Error('Failed to submit form');
+                    }
+                    return;
+                }
+
+                if(response.ok){
+                    if(response.status === 200){
+                        alert("Room Added!");
+                        formik.resetForm()
+                        formik.setFieldValue('coverImg', null)
+                        formik.setFieldValue('image1', null)
+                        formik.setFieldValue('image2', null)
+                    }
+                }
+
+                const data = await response.json();
+                console.log('Success:', data);
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while submitting the form.');
             }
-
-            if(response.status === 400){
-                alert("Cover Image is Required!")
-            }
-
-            const data = await response.json();
-            console.log('Success:', data);
-        } catch (error) {
-            console.error('Error:', error);
         }
-         console.log(values)
-        }
+    });
 
-    })
 
-    return {formik}
-}
+    
 
-export default useAddRooms
+    return { formik };
+};
+
+export default useAddRooms;

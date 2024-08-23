@@ -1,21 +1,22 @@
-:root {
+
+
+:root{
     --primary-color: #2f2cd8;
     --secondary-color: #7184ad;
     --heading-color: #1f2c73;
 }
 
 
-#ManageBooking .main-content {
-    margin-top: 15px;
+#notification .main-content{
+   margin-top: 15px;
 }
-
-#ManageBooking h1 {
+#notification h1{
     font-size: 22px;
     font-weight: 500;
     color: var(--heading-color);
 }
 
-#ManageBooking p {
+#notification p{
     font-size: 14px;
     font-weight: 400;
     color: var(--secondary-color);
@@ -23,29 +24,21 @@
 }
 
 
-.ManageBookingCards {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.notification-item{
+    border-bottom: 1px solid var(--secondary-color);
 }
 
-.ManageBookingCards-Item {
-    width: 49%;
+.notification-items{
     box-shadow: "0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12)";
     background-color: white;
     border-radius: 6px;
-    min-height: 200px;
+    width: 100%;
+    min-height: 100px;
+    margin-top: 20px;
     padding: 20px;
 }
 
-
-.booked-room-card h2{
-    font-size: 16px;
-    color: var(--heading-color);
-}
-
-.ManageBookingCards-Item button{
+.notification-item button{
     padding: 6px 15px;
     background-color: var(--primary-color);
     color: white;
@@ -53,14 +46,10 @@
     border-radius: 6px;
     border: none;
     outline: none;
-    margin: 10px 10px;
+    margin-top: 17px;
 }
 
-/* responsive */
-
-@media (max-width:992px) {
-    .ManageBookingCards-Item {
-        width: 100%;
-    }
-    
+.notification-item h2{
+    font-size: 16px;
+    color: var(--heading-color);
 }

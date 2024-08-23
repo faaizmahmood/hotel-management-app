@@ -5,23 +5,33 @@ const useManageRooms=()=>{
 
     const [roomsData, setRoomsData] = useState([])
 
-    useEffect(() => {
-        const fetchRoomsData = async () => {
-            try {
-                const res = await fetch('http://localhost:4000/api/getrooms');
-                
+    const [loading, setLoding] = useState(true)
 
+
+    useEffect(()=>{
+    setTimeout(()=>{
+        setLoding(false)
+    }, 1000)
+    },[])
+
+    useEffect(() => {
+        const fetchRoomsData = async () => {    
+            try {
+                setLoding(true)
+                const res = await fetch('http://localhost:4000/api/getrooms');
                 const data = await res.json();
                 console.log(data)
                 setRoomsData(data);
+                setLoding(false)
             } catch (error) {
+                setLoding(false)
                 console.error('Failed to fetch room data:', error);
             }
         };
         fetchRoomsData();
     }, []);
 
-    return {roomsData};
+    return {roomsData, loading};
 }
 
 

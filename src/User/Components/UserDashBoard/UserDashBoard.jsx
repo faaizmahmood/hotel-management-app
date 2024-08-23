@@ -1,39 +1,65 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './UserDashBoard.css'
 import Cards from '../../Containers/Cards/Cards'
+import { NavLink } from 'react-router-dom'
+import { UserTypeContext } from '../../../ReduxStore/store'
+import useUserDashBoard from './useUserDashBoard'
+import { useNavigate } from 'react-router-dom'
+import { BeatLoader } from 'react-spinners'
 
-const RoomItem = () => {
-  return (
-    <div className='room-item'>
-      <h2>Room # 1</h2>
-      <i class="fa-solid fa-circle-caret-right"></i>
-    </div>
-  )
-}
+
+
 
 const UserDashBoard = () => {
 
+  const { loggedInUser } = useContext(UserTypeContext)
 
+  const { roomsData, loading, startLoading, userReservationsCount } = useUserDashBoard()
+
+  const navigate = useNavigate()
+
+
+
+  if (startLoading) {
+    return (
+      <>
+        <div className='loading'
+          style={{
+            width: '100%',
+            height: '60vh',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'white',
+            borderRadius: "10px",
+            boxShadow: "0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12)",
+          }}>
+          <BeatLoader />
+        </div>
+      </>
+    )
+
+  }
 
   return (
     <>
       <main className='' id='dashboard'>
 
         <div className='main-content'>
-          <h1>user dashboard</h1>
+          <h1>User dashboard</h1>
           <p>Welcome Ekash Finance Management</p>
         </div>
 
         <div className='cards'>
           <Cards
             title="Current Reservation"
-            value="01"
+            value={userReservationsCount}
             description="You have one upcoming reservation."
             icon="fa-regular fa-lock"
           />
           <Cards
             title="Available Rooms"
-            value="12"
+            value={roomsData.length}
             description="Explore available rooms and rates for your next stay."
             icon="fa-regular fa-bed"
           />
@@ -57,49 +83,33 @@ const UserDashBoard = () => {
           <div className='room-list'>
 
             <div>
-              <RoomItem />
-              <RoomItem />
-              <RoomItem />
+              {
+                roomsData.length === 0 ? (
+                  <h1>No Room Available</h1>
+                ) : (
+                  roomsData.map((ele, ind) => {
+                    return (
+                      <div className='room-item' key={ind} onClick={() => {
+                        navigate('/room-detail-page', { state: ele });
+                      }}>
+                        <h2>Room # {ele.roomNo}</h2>
+                        <i class="fa-solid fa-circle-caret-right"></i>
+                      </div>
+                    )
+                  })
+                )
+              }
             </div>
-            <button>See All <i class="fa-regular fa-eye"></i></button>
+            <NavLink to='/room-listing-page'><button>See All <i class="fa-regular fa-eye"></i></button></NavLink>
           </div>
 
           <div className='profile-section'>
-            <img src='./images/FaaizMahmood.png' alt='profile-section-img' className='profile-section-img' />
-            <h1 className='mt-4'>Faaiz Mahmood</h1>
+            <img src='./images/profile-img.png' alt='profile-section-img' className='profile-section-img' />
+            <h1 className='mt-4'>{loggedInUser.name}</h1>
             <p>Manage your personal details and preferences here for a tailored stay experience.</p>
             <button>See Full Profile</button>
           </div>
         </div>
-
-        <div className='contact--and--offers mt-4'>
-          <div className='contact'>
-            <h1>Special Offers & Promotions</h1>
-          </div>
-
-          <div className='offers-section'>
-            <h1>Special Offers & Promotions</h1>
-            <div className='offer-item'>
-              <div>
-                <h2>Summer Escape Special <span>(Valid until September 30, 2024)</span></h2>
-                <p>Enjoy a limited-time discount on your next stay. Book now and save 20% on all room types!</p>
-              </div>
-            </div>
-            <div>
-              <div>
-                <h2>Summer Escape Special <span>(Valid until September 30, 2024)</span></h2>
-                <p>Enjoy a limited-time discount on your next stay. Book now and save 20% on all room types!</p>
-              </div>
-            </div>
-            <div>
-              <div>
-                <h2>Summer Escape Special <span>(Valid until September 30, 2024)</span></h2>
-                <p>Enjoy a limited-time discount on your next stay. Book now and save 20% on all room types!</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
       </main>
     </>
   )
