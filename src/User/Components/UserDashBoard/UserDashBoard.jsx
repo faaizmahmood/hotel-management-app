@@ -47,14 +47,14 @@ const UserDashBoard = () => {
 
         <div className='main-content'>
           <h1>User dashboard</h1>
-          <p>Welcome Ekash Finance Management</p>
+          <p>Welcome Ekash Hotel Management App</p>
         </div>
 
         <div className='cards'>
           <Cards
             title="Current Reservation"
             value={userReservationsCount}
-            description="You have one upcoming reservation."
+            description= {`You have ${userReservationsCount} upcoming reservation.`}
             icon="fa-regular fa-lock"
           />
           <Cards
@@ -65,13 +65,13 @@ const UserDashBoard = () => {
           />
           <Cards
             title="Specal Offer"
-            value="00"
+            value="--"
             description="Check out our exclusive deals and promotions for a better experience."
             icon="fa-regular fa-party-horn"
           />
           <Cards
             title="Loyality Points"
-            value="56"
+            value="--"
             description="Check your loyalty points balance and redeem them for rewards."
             icon="fa-regular fa-gift"
           />
@@ -107,7 +107,7 @@ const UserDashBoard = () => {
             <img src='./images/profile-img.png' alt='profile-section-img' className='profile-section-img' />
             <h1 className='mt-4'>{loggedInUser.name}</h1>
             <p>Manage your personal details and preferences here for a tailored stay experience.</p>
-            <button>See Full Profile</button>
+            <NavLink to='/profile'><button>See Full Profile</button></NavLink> 
           </div>
         </div>
       </main>

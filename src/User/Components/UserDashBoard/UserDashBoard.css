@@ -50,6 +50,7 @@
     padding: 15px;
     background-color: white;
     border-radius: 6px;
+    overflow-y: scroll;
 }
 
 .profile-section{

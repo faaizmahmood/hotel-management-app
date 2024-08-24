@@ -5,39 +5,28 @@
 }
 
 
-#manage-employee h1 {
+#history h1 {
     font-size: 22px;
     font-weight: 500;
     color: var(--heading-color);
     text-align: start;
 }
 
-#manage-employee p {
+#history p {
     font-size: 14px;
     font-weight: 400;
     color: var(--secondary-color);
     margin-top: -5px;
 }
 
-#manage-employee button{
-    padding: 10px 20px;
-    background-color: var(--primary-color);
-    color: white;
-    font-size: 14px;
-    border-radius: 6px;
-    border: none;
-    outline: none;
-    margin-top: 17px;
-}
 
-.employees {
+.history-section{
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
-    margin-top: 20px;
 }
 
-.employee-card {
+.history-item{
     width: 32%;
     margin-top: 10px;
     border-radius: 6px;
@@ -45,24 +34,16 @@
     min-height: 100px;
     background-color: white;
     padding: 10px;
-    text-align: center;
 }
-
-.employee-card img{
-   border-radius: 50%;
-   width: 100px;
-
-}
-
 
 @media (max-width:768px) {
-    .employee-card{
+    .history-item{
         width: 49%;
     }
 }
 
 @media (max-width:768px) {
-    .employee-card{
+    .history-item{
         width: 100%;
     }
 }

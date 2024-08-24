@@ -39,7 +39,6 @@ const useLogin = () => {
   const initialValues = {
     email: '',
     password: '',
-    userType: '',
   };
 
   const formik = useFormik({

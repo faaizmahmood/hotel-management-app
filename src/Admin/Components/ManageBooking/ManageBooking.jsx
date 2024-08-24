@@ -35,8 +35,8 @@ const ManageBooking = () => {
         <section id='ManageBooking'>
 
           <div className='main-content'>
-            <h1>Manage Booking</h1>
-            <p>Manage your Booking from here!</p>
+            <h1>Current Bookings</h1>
+            <p>Manage your Booking from here! You can see Complete Booking History Here.</p>
           </div>
 
           <div className='ManageBookingCards'>

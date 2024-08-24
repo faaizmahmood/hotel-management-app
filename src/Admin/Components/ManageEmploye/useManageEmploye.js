@@ -1,16 +1,31 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
+const useManageEmployee = () => {
+  const [loading, setLoading] = useState(true);
+  const [employeeData, setEmployeeData] = useState([]);
 
-const useManageEmploye= ()=>{
-    const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('http://localhost:4000/api/employees');
 
-    useEffect(()=>{
-      setTimeout(()=>{
-        setLoading(false)
-      },1000)
-    },[])
+        if (res.ok) {
+          const data = await res.json();
+          setEmployeeData(data.reverse()); // Reversing the data if needed
+        } else {
+          alert("Error while fetching employee records");
+        }
+      } catch (error) {
+        alert("Error while fetching employee records");
+      } finally {
+        setLoading(false); // Set loading to false after fetching is done
+      }
+    };
 
-return {loading}
-}
+    fetchData();
+  }, []);
 
-export default useManageEmploye
+  return { loading, employeeData };
+};
+
+export default useManageEmployee;

@@ -116,6 +116,9 @@ const BookRoom = () => {
                                 </div>
                             </div>
                         </div>
+
+
+
                         <div className='row'>
                             <div className='col-md-6 col-12'>
                                 <div className='form-group'>
@@ -144,6 +147,44 @@ const BookRoom = () => {
                                     />
                                     {formik.touched.userAddress && formik.errors.userAddress ? (
                                         <div className="error-text">{formik.errors.userAddress}</div>
+                                    ) : null}
+                                </div>
+                            </div>
+                        </div>
+
+
+                        {/* Family Details Section */}
+                        <div className='section-header'>
+                            <h2>Family Details</h2>
+                        </div>
+                        <div className='row'>
+                            <div className='col-md-6 col-12'>
+                                <div className='form-group'>
+                                    <input
+                                        type='number'
+                                        name='numberOfAdults'
+                                        id="numberOfAdults"
+                                        placeholder='Number of adults'
+                                        value={formik.values.numberOfAdults}
+                                        onChange={formik.handleChange}
+                                    />
+                                    {formik.touched.numberOfAdults && formik.errors.numberOfAdults ? (
+                                        <div className="error-text">{formik.errors.numberOfAdults}</div>
+                                    ) : null}
+                                </div>
+                            </div>
+                            <div className='col-md-6 col-12'>
+                                <div className='form-group'>
+                                    <input
+                                        type='number'
+                                        id="numberOfChildren"
+                                        name="numberOfChildren"
+                                        placeholder='Number of Childrens'
+                                        value={formik.values.numberOfChildren}
+                                        onChange={formik.handleChange}
+                                    />
+                                    {formik.touched.numberOfChildren && formik.errors.numberOfChildren? (
+                                        <div className="error-text">{formik.errors.numberOfChildren}</div>
                                     ) : null}
                                 </div>
                             </div>

@@ -5,16 +5,17 @@ import { BeatLoader } from 'react-spinners'
 import { useContext } from 'react'
 import { UserTypeContext } from '../../../ReduxStore/store'
 import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const UserReservations = () => {
 
     const { loading, bookingsData } = useUserReservations()
 
-    const { loggedInUser, setUserReservations } = useContext(UserTypeContext)
+    const { loggedInUser } = useContext(UserTypeContext)
 
     const filteredBookings = bookingsData.filter((ele) => loggedInUser.userId === ele.userId);
 
-    setUserReservations(filteredBookings.length)
+    const navigate = useNavigate()
 
     if (loading) {
         return (
@@ -77,7 +78,9 @@ const UserReservations = () => {
                                                 </div>
                                             </div>
                                             <div className="card-footer">
-                                                <button className="cancel-booking-btn">Cancel Booking</button>
+                                                <button className="cancel-booking-btn" onClick={()=>{
+                                                    navigate("/review", {state : ele})
+                                                }}>End Booking</button>
                                             </div>
                                         </div>
                                     </div>

@@ -84,7 +84,7 @@ const Login = () => {
                       <div className="error-text">{formik.errors.password}</div>
                     ) : null}
                   </div>
-                  <div className="form-group">
+                  {/* <div className="form-group">
                     <div className="select-field">
                       <select
                         id="userType"
@@ -101,7 +101,7 @@ const Login = () => {
                     {formik.touched.userType && formik.errors.userType ? (
                       <div className="error-text">{formik.errors.userType}</div>
                     ) : null}
-                  </div>
+                  </div> */}
                   <button type="submit"> {loading ? <BeatLoader /> : "Sign In"}</button>
                 </form>
                 {/* form */}

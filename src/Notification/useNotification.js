@@ -21,7 +21,7 @@ const useNotification = () => {
 
                 const data = await res.json()
 
-                setBookingsData(data)
+                setBookingsData(data.reverse())
 
             } catch (error) {
                 console.log("Error", error)

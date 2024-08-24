@@ -6,16 +6,17 @@
 }
 
 
-#dashboard .main-content{
+#admin-dashboard .main-content{
    margin-top: 15px;
 }
-#dashboard h1{
-    font-size: 22px;
-    font-weight: 500;
-    color: var(--heading-color);
+
+#admin-dashboard h1{
+    font-size: 22px !important;
+    font-weight: 500 !important;
+    color: var(--heading-color) !important;
 }
 
-#dashboard p{
+#admin-dashboard p{
     font-size: 14px;
     font-weight: 400;
     color: var(--secondary-color);
@@ -34,16 +35,16 @@
 }
 
 
-/* --------------------BalaceTrends-MonthlyExpenses 
+/* --------------------room-list--and--profile-section
 -------------------*/
 
-.BalaceTrends-MonthlyExpenses{
+.room-list--and--profile-section{
     display: flex;
     flex-wrap: wrap;
    justify-content: space-between;
 }
 
-.BalaceTrends{
+.room-list{
     width: 69%;
     box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
     padding: 15px;
@@ -51,10 +52,31 @@
     border-radius: 6px;
 }
 
-.MonthlyExpenses{
+.profile-section{
     width: 29%;
     box-shadow: 0 0 2px 0 rgba(145, 158, 171, .3), 0 12px 24px -4px rgba(145, 158, 171, .12);
     padding: 15px;
     background-color: white;
     border-radius: 6px;
+}
+
+@media (max-width:992px) {
+    .room-list{
+        width: 59%;
+    }
+    
+    .profile-section{
+        width: 39%;
+    }
+}
+
+@media (max-width:768px) {
+    .room-list{
+        width: 100%;
+    }
+    
+    .profile-section{
+        width: 100%;
+        margin-top: 20px;
+    }
 }

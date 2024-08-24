@@ -12,8 +12,13 @@ import RoomListingPage from '../User/Components/RoomListingPage/RoomListingPage'
 import UserDashBoard from '../User/Components/UserDashBoard/UserDashBoard';
 import AddRooms from '../Admin/Components/AddRooms/AddRooms';
 import BookRoom from '../User/Containers/BookRoom/BookRoom';
-import Notification from '../Admin/Components/Notification/Notification';
+import Notification from '../Notification/Notification';
 import UserReservations from '../User/Components/UserReservations/UserReservations';
+import AddEmployee from '../Admin/Components/Addemployee/Addemployee';
+import Review from '../User/Components/Review/Review';
+import AdminReviews from '../Admin/Components/AdminReviews/AdminReviews';
+import History from '../Admin/Components/History/History';
+import Profile from '../Profile/Profile';
 import { Route, Routes, useLocation } from 'react-router';
 import Errors from '../Errors/Errors';
 import Login from '../auth/Login/Login';
@@ -23,12 +28,14 @@ import { UserTypeContext } from '../ReduxStore/store';
 import { Navigate } from 'react-router-dom';
 import { BeatLoader } from 'react-spinners';
 
-const ProtectedRoute = ({ userType, allowedTypes, element }) => {
-    if (!userType) {
+const ProtectedRoute = ({ element, allowedTypes }) => {
+    const { loggedInUser } = useContext(UserTypeContext);
+
+    if (!loggedInUser) {
         return <Navigate to="/auth-sign-in" />;
     }
 
-    if (!allowedTypes.includes(userType)) {
+    if (!allowedTypes.includes(loggedInUser.usertype)) {
         return <Navigate to="/error" />;
     }
 
@@ -55,20 +62,18 @@ const Router = () => {
 
     if (loading) {
         return (
-            <>
-                <div className='loading'
-                    style={{
-                        width: '100%',
-                        height: '100vh',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        backgroundColor: 'white'
-                    }}>
-                    <BeatLoader />
-                </div>;
-            </>
-        )
+            <div className='loading'
+                style={{
+                    width: '100%',
+                    height: '100vh',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    backgroundColor: 'white'
+                }}>
+                <BeatLoader />
+            </div>
+        );
     }
 
     return (
@@ -89,7 +94,10 @@ const Router = () => {
                             <Route path='/manage-rooms' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['admin']} element={<ManageRooms />} />} />
                             <Route path='/manage-booking' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['admin']} element={<ManageBooking />} />} />
                             <Route path='/add-rooms' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['admin']} element={<AddRooms />} />} />
-                            <Route path='/notification' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['admin']} element={<Notification />} />} />
+                            <Route path='/admin-reviews' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['admin']} element={<AdminReviews />} />} />
+                            <Route path='/history' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['admin']} element={<History />} />} />
+                            <Route path='/add-employee' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['admin']} element={<AddEmployee />} />} />
+                            
 
                             {/* Simple User Routes */}
                             <Route path='/contact' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['user']} element={<Contact />} />} />
@@ -98,11 +106,14 @@ const Router = () => {
                             <Route path='/user-dashBoard' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['user']} element={<UserDashBoard />} />} />
                             <Route path='/book-room' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['user']} element={<BookRoom />} />} />
                             <Route path='/reservations' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['user']} element={<UserReservations />} />} />
+                            <Route path='/review' element={<ProtectedRoute userType={loggedInUser?.usertype} allowedTypes={['user']} element={<Review />} />} />
 
                             {/* Routes for Both */}
                             <Route path='/auth-sign-in' element={<Login />} />
                             <Route path='/auth-sign-up' element={<SignUp />} />
+                            <Route path='/profile' element={<Profile />} />
                             <Route path='*' element={<Errors />} />
+                            <Route path='/notification' element={<Notification />} />
                         </Routes>
                         {!hideElements && <Footer />}
                     </div>

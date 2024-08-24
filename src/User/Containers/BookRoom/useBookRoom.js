@@ -3,6 +3,7 @@ import * as Yup from 'yup';
 import { UserTypeContext } from '../../../ReduxStore/store';
 import { useLocation } from 'react-router';
 import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
 const useRoomBooking = () => {
 
@@ -11,6 +12,8 @@ const useRoomBooking = () => {
     const { loggedInUser } = useContext(UserTypeContext);
 
     const location = useLocation();
+
+    const navigate = useNavigate()
 
     const room = location.state;
 
@@ -35,6 +38,8 @@ const useRoomBooking = () => {
         userId: loggedInUser?.userId || '',
         checkInDate: '',
         checkOutDate: '',
+        numberOfAdults: '',
+        numberOfChildren: '',
         duration: '',
         pricePerDay: room?.pricePerDay || 0,
         totalPrice: '0',
@@ -76,6 +81,7 @@ const useRoomBooking = () => {
                         duration: values.duration,
                         pricePerDay: values.pricePerDay,
                         totalPrice: values.totalPrice,
+                        userId: loggedInUser?.userId,
                     };
 
                     try {
@@ -90,6 +96,8 @@ const useRoomBooking = () => {
 
                         if (resBookings.ok) {
                             alert('Room booked successfully!');
+                            formik.resetForm()
+                            navigate('/room-listing-page')
                         } else {
                             alert('Failed to book room.');
                         }
@@ -103,7 +111,7 @@ const useRoomBooking = () => {
                 }
             } catch (error) {
                 console.error('Error:', error);
-                alert('An error occurred while updating the room status.');
+                alert('Failed to book room.');
             }
         },
     });

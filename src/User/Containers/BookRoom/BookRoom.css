@@ -36,6 +36,7 @@
 .booking-form input[type="email"],
 .booking-form input[type="tel"],
 .booking-form input[type="date"],
+.booking-form input[type="number"],
 .booking-form select {
     width: 100%;
     padding: 12px 20px;

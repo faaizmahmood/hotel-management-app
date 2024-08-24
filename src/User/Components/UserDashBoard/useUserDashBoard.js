@@ -1,22 +1,25 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { UserTypeContext } from "../../../ReduxStore/store";
 
 
 
-const useUserDashBoard=()=>{
+const useUserDashBoard = () => {
     const [roomsData, setRoomsData] = useState([])
 
-    const [ loading, setLoading ] = useState(false)
+    const [loading, setLoading] = useState(false)
 
     const [startLoading, setStartLoading] = useState(true);
 
     const [userReservationsCount, setUserReservationsCount] = useState("0")
 
+    const { loggedInUser } = useContext(UserTypeContext)
+
 
     useEffect(() => {
         setTimeout(() => {
-          setStartLoading(false);
+            setStartLoading(false);
         }, 1000);
-      }, []);
+    }, []);
 
     useEffect(() => {
         const fetchRoomsData = async () => {
@@ -43,7 +46,9 @@ const useUserDashBoard=()=>{
 
                 const data = await res.json()
 
-                setUserReservationsCount(data.length)
+                const filteredReservations = data.filter((ele, ind) => loggedInUser.userId === ele.userId)
+
+                setUserReservationsCount(filteredReservations.length)
 
             } catch (error) {
                 console.log("Error", error)

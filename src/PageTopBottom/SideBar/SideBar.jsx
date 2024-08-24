@@ -1,16 +1,26 @@
-import React, { useContext } from 'react'
-import './SideBar.css'
+import React, { useContext, useEffect } from 'react';
+import './SideBar.css';
 import Tooltip from "@material-ui/core/Tooltip";
 import { NavLink } from 'react-router-dom';
 import { UserTypeContext } from '../../ReduxStore/store';
 import useSideBar from './useSideBar';
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = () => {
+  const { loggedInUser } = useContext(UserTypeContext);
+  const navigate = useNavigate();
+  const { logout } = useSideBar();
 
-  const { loggedInUser } = useContext(UserTypeContext)
+  // Redirect to sign-in page if loggedInUser is null
+  useEffect(() => {
+    if (!loggedInUser) {
+      navigate("/auth-sign-in");
+    }
+  }, [loggedInUser, navigate]);
 
-  const {logout} = useSideBar()
-
+  if (!loggedInUser) {
+    return null; // Render nothing if loggedInUser is null
+  }
 
   const renderUserSidebar = () => {
     return (
@@ -20,24 +30,23 @@ const SideBar = () => {
           <NavLink to='/user-dashBoard'><i className="fa-regular fa-grid-horizontal"></i></NavLink>
         </Tooltip>
         <Tooltip title="Room Listing Page" placement="right">
-          <NavLink to='/room-listing-page'><i class="fa-regular fa-bed-empty"></i></NavLink>
+          <NavLink to='/room-listing-page'><i className="fa-regular fa-bed-empty"></i></NavLink>
         </Tooltip>
         <Tooltip title="Your Reservations" placement="right">
-          <NavLink to='/reservations'><i class="fa-regular fa-landmark-magnifying-glass"></i></NavLink>
+          <NavLink to='/reservations'><i className="fa-regular fa-landmark-magnifying-glass"></i></NavLink>
         </Tooltip>
         <Tooltip title="Contact" placement="right">
-          <NavLink to='/contact'><i class="fa-regular fa-envelope"></i></NavLink>
+          <NavLink to='/contact'><i className="fa-regular fa-envelope"></i></NavLink>
         </Tooltip>
         <Tooltip title="Profile" placement="right">
-          <i className="fa-regular fa-user"></i>
+          <NavLink to='/profile'><i className="fa-regular fa-user"></i></NavLink>
         </Tooltip>
         <Tooltip title="Logout" placement="right">
-          {/* <i className="fa-regular fa-user" onClick={logout}></i> */}
           <i className="fa-solid fa-arrow-right-from-bracket" onClick={logout}></i>
         </Tooltip>
       </aside>
-    )
-  }
+    );
+  };
 
   const renderAdminSidebar = () => {
     return (
@@ -47,35 +56,32 @@ const SideBar = () => {
           <NavLink to='/'><i className="fa-regular fa-grid-horizontal"></i></NavLink>
         </Tooltip>
         <Tooltip title="Manage Employee" placement="right">
-          <NavLink to='/manage-employe'><i class="fa-regular fa-users"></i></NavLink>
+          <NavLink to='/manage-employe'><i className="fa-regular fa-users"></i></NavLink>
         </Tooltip>
         <Tooltip title="Manage Rooms" placement="right">
-          <NavLink to='/manage-rooms'> <i class="fa-regular fa-list-check"></i></NavLink>
+          <NavLink to='/manage-rooms'><i className="fa-regular fa-list-check"></i></NavLink>
         </Tooltip>
-        <Tooltip title="Manage Bookings" placement="right">
-          <NavLink to='/manage-booking'><i class="fa-regular fa-paperclip-vertical"></i></NavLink>
+        <Tooltip title="Current Bookings" placement="right">
+          <NavLink to='/manage-booking'><i className="fa-regular fa-paperclip-vertical"></i></NavLink>
         </Tooltip>
-        <Tooltip title="Profile" placement="right">
-          <i className="fa-regular fa-user"></i>
+        <Tooltip title="Bookings History" placement="right">
+          <NavLink to='/history'><i class="fa-regular fa-rectangle-history"></i></NavLink>
+        </Tooltip>
+        <Tooltip title="Reviews" placement="right">
+          <NavLink to='/admin-reviews'><i class="fa-regular fa-star-sharp-half-stroke"></i></NavLink>
         </Tooltip>
         <Tooltip title="Logout" placement="right">
-          {/* <i className="fa-regular fa-user" onClick={logout}></i> */}
           <i className="fa-solid fa-arrow-right-from-bracket" onClick={logout}></i>
         </Tooltip>
-
       </aside>
-    )
-  }
-
+    );
+  };
 
   return (
     <>
-      {loggedInUser.usertype === 'user' ? renderUserSidebar() : renderAdminSidebar()}
+      {loggedInUser?.usertype === 'user' ? renderUserSidebar() : renderAdminSidebar()}
     </>
-
   );
+};
 
-
-}
-
-export default SideBar
+export default SideBar;
