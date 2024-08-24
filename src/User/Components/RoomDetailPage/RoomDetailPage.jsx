@@ -50,11 +50,11 @@ const RoomDetailPage = () => {
 
         <div className='room-detail-page-header mt-5'>
           <div className='room-detail-page-header-img-list'>
-            <img src={`http://localhost:4000/images/${room.CoverImageURL}`} alt='...' className='room-detail-page-img' data-imgID='1' onClick={(e) => changeImage(e)} />
+            <img src={`https://solstice-interesting-burrito.glitch.me/images/${room.CoverImageURL}`} alt='...' className='room-detail-page-img' data-imgID='1' onClick={(e) => changeImage(e)} />
 
-            <img src={`http://localhost:4000/images/${room.image1URL}`} data-imgID='2' alt='...' className='room-detail-page-img' onClick={(e) => changeImage(e)} />
+            <img src={`https://solstice-interesting-burrito.glitch.me/images/${room.image1URL}`} data-imgID='2' alt='...' className='room-detail-page-img' onClick={(e) => changeImage(e)} />
 
-            <img src={`http://localhost:4000/images/${room.image2URL}`} data-imgID='3' alt='...' className='room-detail-page-img' onClick={(e) => changeImage(e)} />
+            <img src={`https://solstice-interesting-burrito.glitch.me/images/${room.image2URL}`} data-imgID='3' alt='...' className='room-detail-page-img' onClick={(e) => changeImage(e)} />
           </div>
 
           <div className='room-detail-page-header-active-img'>

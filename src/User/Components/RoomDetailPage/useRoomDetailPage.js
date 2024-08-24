@@ -10,14 +10,14 @@ const useRoomDetailPage = () => {
 
     const [loading , setLoading] = useState(true)
 
-    const [activeImg, setActiveImg] = useState(`http://localhost:4000/images/${room.CoverImageURL}`)
+    const [activeImg, setActiveImg] = useState(`https://solstice-interesting-burrito.glitch.me/images/${room.CoverImageURL}`)
 
     const changeImage = (e) => {
         const id = e.target.getAttribute("data-imgID")
 
-        if (id === '1') setActiveImg(`http://localhost:4000/images/${room.CoverImageURL}`)
-        if (id === '2') setActiveImg(`http://localhost:4000/images/${room.image1URL}`)
-        if (id === '3') setActiveImg(`http://localhost:4000/images/${room.image2URL}`)
+        if (id === '1') setActiveImg(`https://solstice-interesting-burrito.glitch.me/images/${room.CoverImageURL}`)
+        if (id === '2') setActiveImg(`https://solstice-interesting-burrito.glitch.me/images/${room.image1URL}`)
+        if (id === '3') setActiveImg(`https://solstice-interesting-burrito.glitch.me/images/${room.image2URL}`)
 
     }
 

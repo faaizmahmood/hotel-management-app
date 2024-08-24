@@ -42,7 +42,7 @@ const useAddEmployee = () => {
       };
 
       try {
-        const response = await fetch('http://localhost:4000/api/employees', {
+        const response = await fetch('https://solstice-interesting-burrito.glitch.me/api/employees', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

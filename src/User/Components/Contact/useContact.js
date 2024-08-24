@@ -41,7 +41,7 @@ const useContact = () => {
             }
 
             try {
-                const res = await fetch("http://localhost:4000/api/contact", {
+                const res = await fetch("https://solstice-interesting-burrito.glitch.me/api/contact", {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

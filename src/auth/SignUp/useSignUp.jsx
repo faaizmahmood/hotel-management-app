@@ -40,7 +40,7 @@ const useSignUp = () => {
       }
 
       try {
-        const res = await fetch("http://localhost:4000/api/adduser", {
+        const res = await fetch("https://solstice-interesting-burrito.glitch.me/api/adduser", {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

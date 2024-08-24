@@ -25,7 +25,7 @@ const useUserDashBoard = () => {
         const fetchRoomsData = async () => {
             try {
                 setLoading(true)
-                const res = await fetch('http://localhost:4000/api/getrooms');
+                const res = await fetch('https://solstice-interesting-burrito.glitch.me/api/getrooms');
 
                 const data = await res.json();
                 console.log(data)
@@ -42,7 +42,7 @@ const useUserDashBoard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch("http://localhost:4000/api/bookings")
+                const res = await fetch("https://solstice-interesting-burrito.glitch.me/api/bookings")
 
                 const data = await res.json()
 

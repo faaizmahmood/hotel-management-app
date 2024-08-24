@@ -8,7 +8,7 @@ const useAdminReviews = () => {
         const fetchData = async () => {
             try {
                 setLoading(true);
-                const res = await fetch('http://localhost:4000/api/review');
+                const res = await fetch('https://solstice-interesting-burrito.glitch.me/api/review');
 
                 if (!res.ok) {
                     throw new Error(`HTTP error! Status: ${res.status}`);

@@ -47,7 +47,7 @@ export const RoomListingPage = () => {
                   key={ind}
                   roomNo={room.roomNo}
                   RoomDescription={room.RoomDescription}
-                  img={`http://localhost:4000/images/${room.CoverImageURL}`}
+                  img={`https://solstice-interesting-burrito.glitch.me/images/${room.CoverImageURL}`}
                   room={room}
                 />
               ))

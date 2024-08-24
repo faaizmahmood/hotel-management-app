@@ -47,7 +47,7 @@ const useAddRooms = () => {
 
             try {
                 // Check if roomNo already exists before submitting the form
-                const response2 = await fetch('http://localhost:4000/api/getrooms');
+                const response2 = await fetch('https://solstice-interesting-burrito.glitch.me/api/getrooms');
                 const roomsData = await response2.json();
 
                 const isRoom = roomsData.find((item) => item.roomNo === values.roomNo);
@@ -58,7 +58,7 @@ const useAddRooms = () => {
                 }
 
                 // Submit form data
-                const response = await fetch('http://localhost:4000/api/addrooms', {
+                const response = await fetch('https://solstice-interesting-burrito.glitch.me/api/addrooms', {
                     method: 'POST',
                     body: formData,
                 });

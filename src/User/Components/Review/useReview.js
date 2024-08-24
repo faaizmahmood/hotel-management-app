@@ -41,7 +41,7 @@ const useReview = () => {
             };
 
             try {
-                const reviewResponse = await fetch('http://localhost:4000/api/review', {
+                const reviewResponse = await fetch('https://solstice-interesting-burrito.glitch.me/api/review', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -53,7 +53,7 @@ const useReview = () => {
                     throw new Error('Error submitting review');
                 }
 
-                const deleteResponse = await fetch(`http://localhost:4000/api/bookings/${currentReservation.roomNo}`, {
+                const deleteResponse = await fetch(`https://solstice-interesting-burrito.glitch.me/api/bookings/${currentReservation.roomNo}`, {
                     method: 'DELETE',
                 });
 
@@ -65,7 +65,7 @@ const useReview = () => {
                     AvailabilityStatus: 'Available'
                 };
 
-                const updateRoomResponse = await fetch(`http://localhost:4000/api/updateRoomStatus/${currentReservation.roomNo}`, {
+                const updateRoomResponse = await fetch(`https://solstice-interesting-burrito.glitch.me/api/updateRoomStatus/${currentReservation.roomNo}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'

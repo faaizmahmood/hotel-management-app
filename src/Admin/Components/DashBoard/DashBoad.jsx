@@ -43,13 +43,13 @@ const Dashboard = () => {
             <div className='cards'>
                 <Cards
                     title="Current Bookings"
-                    value={data.currentBookings.length}
+                    value={data?.currentBookings?.length}
                     description="You have active reservations for today."
                     icon="fa-regular fa-calendar-check"
                 />
                 <Cards
                     title="Total Rooms"
-                    value={data.totalRooms}
+                    value={data?.totalRooms}
                     description="Explore the total number of rooms available in the system."
                     icon="fa-regular fa-bed"
                 />
@@ -61,7 +61,7 @@ const Dashboard = () => {
                 />
                 <Cards
                     title="Total Reviews"
-                    value={data.totalReviews}
+                    value={data?.totalReviews}
                     description="Check the total number of reviews left by users."
                     icon="fa-regular fa-star-sharp-half-stroke"
                 />
@@ -75,10 +75,10 @@ const Dashboard = () => {
 
                     <div>
                         {
-                            data.currentBookings.length === 0 ? (
+                            data?.currentBookings?.length === 0 ? (
                                 <h1>No Notification Available</h1>
                             ) : (
-                                data.currentBookings.map((ele, ind) => {
+                                data.currentBookings?.map((ele, ind) => {
                                     return (
                                         <div className='room-item' key={ind}>
                                             <h2>Faaiz Booked Room # {ele.roomNo}</h2>

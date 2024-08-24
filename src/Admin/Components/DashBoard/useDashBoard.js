@@ -7,7 +7,7 @@ const useDashBoard = () => {
   const [loading, setLoading] = useState(true)
 
   const [data, setData] = useState({
-    currentBookings: 0,
+    currentBookings: [],
     totalRooms: 0,
     totalReviews: 0
   });
@@ -23,9 +23,9 @@ const useDashBoard = () => {
 
       try {
         const responses = await Promise.all([
-          fetch('http://localhost:4000/api/bookings'),
-          fetch('http://localhost:4000/api/getrooms'),
-          fetch('http://localhost:4000/api/review')
+          fetch('https://solstice-interesting-burrito.glitch.me/api/bookings'),
+          fetch('https://solstice-interesting-burrito.glitch.me/api/getrooms'),
+          fetch('https://solstice-interesting-burrito.glitch.me/api/review')
         ])
 
         if (responses.every(res => res.ok)) {

@@ -56,7 +56,7 @@ const useRoomBooking = () => {
 
             try {
                 // Update room status
-                const res = await fetch(`http://localhost:4000/api/updateRoomStatus/${room?.roomNo}`, {
+                const res = await fetch(`https://solstice-interesting-burrito.glitch.me/api/updateRoomStatus/${room?.roomNo}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -86,7 +86,7 @@ const useRoomBooking = () => {
 
                     try {
                         // Book the room
-                        const resBookings = await fetch(`http://localhost:4000/api/bookings`, {
+                        const resBookings = await fetch(`https://solstice-interesting-burrito.glitch.me/api/bookings`, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json'

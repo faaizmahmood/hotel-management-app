@@ -52,7 +52,7 @@ const useLogin = () => {
 
       try {
         setLoading(true);
-        const res = await fetch('http://localhost:4000/api/getusers', {
+        const res = await fetch('https://solstice-interesting-burrito.glitch.me/api/getusers', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

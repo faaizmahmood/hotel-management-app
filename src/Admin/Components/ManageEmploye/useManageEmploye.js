@@ -7,7 +7,7 @@ const useManageEmployee = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:4000/api/employees');
+        const res = await fetch('https://solstice-interesting-burrito.glitch.me/api/employees');
 
         if (res.ok) {
           const data = await res.json();
